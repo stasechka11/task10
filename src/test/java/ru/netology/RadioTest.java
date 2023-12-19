@@ -16,4 +16,103 @@ class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    public void shouldSetChannelToMin() {
+        Radio radio = new Radio();
+
+        radio.setCurrentChannel(0);
+
+        int expected = 0;
+        int actual = radio.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetChannelToMax() {
+        Radio radio = new Radio();
+
+        radio.setCurrentChannel(9);
+
+        int expected = 9;
+        int actual = radio.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchToNextChannel() {
+        Radio radio = new Radio();
+
+        radio.setCurrentChannel(5);
+        radio.nextChannel();
+
+        int expected = 6;
+        int actual = radio.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchNextChannelToMinWhenMax() {
+        Radio radio = new Radio();
+
+        radio.setCurrentChannel(9);
+        radio.nextChannel();
+
+        int expected = 0;
+        int actual = radio.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchToPrevChannel() {
+        Radio radio = new Radio();
+
+        radio.setCurrentChannel(2);
+        radio.prevChannel();
+
+        int expected = 1;
+        int actual = radio.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchChannelToMaxWhenMin() {
+        Radio radio = new Radio();
+
+        radio.setCurrentChannel(0);
+        radio.prevChannel();
+
+        int expected = 9;
+        int actual = radio.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotSetChannelLessMin() {
+        Radio radio = new Radio();
+
+        radio.setCurrentChannel(-1);
+
+        int expected = 0;
+        int actual = radio.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotSetChannelAboveMax() {
+        Radio radio = new Radio();
+
+        radio.setCurrentChannel(10);
+
+        int expected = 0;
+        int actual = radio.getCurrentChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }
