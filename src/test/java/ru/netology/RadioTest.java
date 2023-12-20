@@ -5,6 +5,24 @@ import org.junit.jupiter.api.Test;
 
 class RadioTest {
     @Test
+    public void shouldCreateDefaultRadio() {
+        Radio radio = new Radio();
+
+        Assertions.assertEquals(10, radio.getChannelsQuantity());
+        Assertions.assertEquals(0, radio.getMinChannel());
+        Assertions.assertEquals(9, radio.getMaxChannel());
+    }
+
+    @Test
+    public void shouldCreateRadioCustomQuantityChannels() {
+        Radio radio = new Radio(30);
+
+        Assertions.assertEquals(30, radio.getChannelsQuantity());
+        Assertions.assertEquals(0, radio.getMinChannel());
+        Assertions.assertEquals(29, radio.getMaxChannel());
+    }
+
+    @Test
     public void shouldSetChannel() {
         Radio radio = new Radio();
 
