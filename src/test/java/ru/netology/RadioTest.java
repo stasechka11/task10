@@ -5,6 +5,24 @@ import org.junit.jupiter.api.Test;
 
 class RadioTest {
     @Test
+    public void shouldCreateDefaultRadio() {
+        Radio radio = new Radio();
+
+        Assertions.assertEquals(10, radio.getChannelsQuantity());
+        Assertions.assertEquals(0, radio.getMinChannel());
+        Assertions.assertEquals(9, radio.getMaxChannel());
+    }
+
+    @Test
+    public void shouldCreateRadioCustomQuantityChannels() {
+        Radio radio = new Radio(30);
+
+        Assertions.assertEquals(30, radio.getChannelsQuantity());
+        Assertions.assertEquals(0, radio.getMinChannel());
+        Assertions.assertEquals(29, radio.getMaxChannel());
+    }
+
+    @Test
     public void shouldSetChannel() {
         Radio radio = new Radio();
 
@@ -30,11 +48,11 @@ class RadioTest {
 
     @Test
     public void shouldSetChannelToMax() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(20);
 
-        radio.setCurrentChannel(9);
+        radio.setCurrentChannel(19);
 
-        int expected = 9;
+        int expected = 19;
         int actual = radio.getCurrentChannel();
 
         Assertions.assertEquals(expected, actual);
@@ -81,12 +99,12 @@ class RadioTest {
 
     @Test
     public void shouldSwitchChannelToMaxWhenMin() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(15);
 
         radio.setCurrentChannel(0);
         radio.prevChannel();
 
-        int expected = 9;
+        int expected = 14;
         int actual = radio.getCurrentChannel();
 
         Assertions.assertEquals(expected, actual);
